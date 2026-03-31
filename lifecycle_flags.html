@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lifecycle_flags.json</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; background:#f7f9fc; color:#1f2937; }
+    h1 { margin-bottom: 8px; }
+    p { margin-top: 0; color:#4b5563; }
+    .card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,.04); }
+    table { width:100%; border-collapse:collapse; margin-top:16px; font-size:14px; }
+    th, td { border:1px solid #e5e7eb; padding:10px; text-align:left; vertical-align:top; }
+    th { background:#f3f4f6; position:sticky; top:0; }
+    pre { background:#111827; color:#f9fafb; padding:16px; border-radius:10px; overflow:auto; font-size:13px; }
+    .muted { color:#6b7280; }
+    .toolbar { margin-bottom: 14px; }
+    a { color:#2563eb; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <h1>lifecycle_flags.json</h1>
+  <p>Human-readable view for <code>lifecycle_flags.json</code></p>
+  <div class="toolbar"><a href="./index.html">← Back to index</a></div>
+  <div class="card"><div id="app">Loading…</div></div>
+
+  <script>
+    const FILE = './lifecycle_flags.json';
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function renderTable(rows) {
+      if (!Array.isArray(rows) || rows.length === 0) {
+        return '<p class="muted">No records found.</p>';
+      }
+
+      const columns = [...new Set(rows.flatMap(r => Object.keys(r)))];
+      const thead = `<tr>${columns.map(c => `<th>${escapeHtml(c)}</th>`).join('')}</tr>`;
+      const tbody = rows.map(row => {
+        const tds = columns.map(col => {
+          const value = row[col];
+          const text = (value !== null && typeof value === 'object')
+            ? JSON.stringify(value, null, 2)
+            : value;
+          return `<td><pre style="margin:0; background:none; color:inherit; padding:0; white-space:pre-wrap;">${escapeHtml(text ?? '')}</pre></td>`;
+        }).join('');
+        return `<tr>${tds}</tr>`;
+      }).join('');
+
+      return `<table><thead>${thead}</thead><tbody>${tbody}</tbody></table>`;
+    }
+
+    async function init() {
+      const app = document.getElementById('app');
+      try {
+        const res = await fetch(FILE);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        if (Array.isArray(data)) {
+          app.innerHTML = `<p><strong>Records:</strong> ${data.length}</p>` + renderTable(data);
+        } else if (data && typeof data === 'object') {
+          app.innerHTML = `<pre>${escapeHtml(JSON.stringify(data, null, 2))}</pre>`;
+        } else {
+          app.innerHTML = `<pre>${escapeHtml(String(data))}</pre>`;
+        }
+      } catch (err) {
+        app.innerHTML = `<p><strong>Failed to load lifecycle_flags.json</strong></p><pre>${escapeHtml(err.message)}</pre>`;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
