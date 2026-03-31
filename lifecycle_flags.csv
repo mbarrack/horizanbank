@@ -1,0 +1,13 @@
+flag_id,solution_id,age_months,is_stale,cps_linked,bcp_tested,last_nudge_date,availability_score,security_score,scalability_score,technical_fit_score,itpha_finding,itpha_due_date
+LF001,SOL001,6,False,True,True,,4,4,5,5,No findings,
+LF002,SOL002,3,False,True,False,,4,5,4,5,No findings,
+LF003,SOL003,1,False,False,False,,0,0,0,5,Not yet assessed,
+LF004,SOL004,2,False,True,False,,0,0,0,4,Not yet assessed,
+LF005,SOL005,5,False,True,True,,5,4,5,5,No findings,
+LF006,SOL006,6,False,True,True,,5,5,4,5,No findings,
+LF007,SOL007,1,False,True,False,,0,0,0,0,Not yet assessed,
+LF008,SOL008,2,False,True,False,,0,4,4,5,AI model governance framework not yet documented,2026-06-30
+LF009,SOL009,74,True,False,False,2026-01-15,2,2,1,1,Critical: Vendor EOL Dec 2025. Data migration to Salesforce must complete by Jun 2026.,2026-06-30
+LF010,SOL010,5,False,True,False,,4,4,5,4,MuleSoft integration pattern pending formal approval,2026-09-30
+LF011,SOL011,98,True,True,False,2026-02-01,3,2,2,1,Critical: Vendor support ends Jun 2026. Migration to Azure APIM in progress.,2026-09-30
+LF012,SOL012,171,True,True,True,2025-12-01,4,3,3,3,Cloud migration assessment overdue. On-premises hosting creates single point of failure risk.,2026-12-31

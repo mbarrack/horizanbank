@@ -1,0 +1,20 @@
+stack_id,solution_id,platform_name,vendor,version,deployment_model,pattern_type,approved_flag,eol_date,is_eol,license_model,license_count,user_count,auth_type
+TS001,SOL001,Azure Functions,Microsoft,v4,Azure-hosted,Serverless compute,True,,False,Consumption,0,2900,OAuth2 / Bearer token
+TS002,SOL001,Azure API Management,Microsoft,v2,Azure-hosted,API Gateway,True,,False,Tier-based,1,2900,
+TS003,SOL001,Azure SQL Database,Microsoft,SQL Server 2022,Azure-hosted,Relational database,True,,False,DTU-based,1,0,
+TS004,SOL001,Azure Front Door,Microsoft,Standard,Azure-hosted,CDN / WAF,True,,False,Usage-based,1,0,
+TS005,SOL002,Azure Entra External ID,Microsoft,2.0,Azure-hosted,CIAM / Auth Server,True,,False,MAU-based,1,50000,OIDC / FAPI 1.0 Advanced
+TS006,SOL002,Azure API Management,Microsoft,v2,Azure-hosted,API Gateway,True,,False,Tier-based,1,0,
+TS007,SOL002,Azure Functions,Microsoft,v4,Azure-hosted,Serverless compute,True,,False,Consumption,0,0,
+TS008,SOL002,Azure Cosmos DB,Microsoft,NoSQL v4,Azure-hosted,Document database,True,,False,RU-based,1,0,
+TS009,SOL002,Azure Front Door,Microsoft,Standard,Azure-hosted,CDN / WAF,True,,False,Usage-based,1,0,
+TS010,SOL003,Copilot Studio,Microsoft,2025,M365-hosted,Agentic AI,True,,False,M365 Copilot,10,10,Entra ID
+TS011,SOL003,Microsoft Dataverse,Microsoft,2025,M365-hosted,Relational database,True,,False,Power Platform,1,10,
+TS012,SOL003,Power Automate,Microsoft,2025,M365-hosted,Workflow automation,True,,False,Per-flow,5,0,
+TS013,SOL003,Power BI Premium,Microsoft,2025,M365-hosted,Analytics,True,,False,Capacity,1,50,
+TS014,SOL005,Snowflake,Snowflake,2024,Cloud-hosted (GCP AU),Data warehouse,True,,False,Compute credits,1,200,SSO via Entra
+TS015,SOL005,Azure Data Factory,Microsoft,v2,Azure-hosted,ETL / ELT,True,,False,Activity-based,1,0,
+TS016,SOL005,Power BI Premium,Microsoft,2025,M365-hosted,Analytics,True,,False,Capacity,1,300,
+TS017,SOL009,Oracle Siebel CRM,Oracle,8.1.1,On-premises,CRM,False,2025-12-31,True,Perpetual,1,150,LDAP
+TS018,SOL011,IBM DataPower Gateway,IBM,10.0.4,On-premises,API Gateway,False,2026-06-30,True,Perpetual,1,0,
+TS019,SOL012,Temenos Transact,Temenos,R22,On-premises,Core Banking SoR,True,,False,Perpetual plus maintenance,1,400,LDAP / MFA

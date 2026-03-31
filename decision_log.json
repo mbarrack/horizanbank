@@ -1,0 +1,102 @@
+[
+  {
+    "decision_id": "DEC001",
+    "solution_id": "SOL001",
+    "decision_date": "2024-07-15",
+    "decision_text": "Adopt Azure Functions (serverless) over Azure App Service for the calculation engine",
+    "rationale": "Serverless provides cost-efficient scaling for variable broker calculation load. No persistent state required.",
+    "risk": "Low \u2014 Microsoft-managed scaling",
+    "status": "Approved",
+    "made_by": "Alex Rivera"
+  },
+  {
+    "decision_id": "DEC002",
+    "solution_id": "SOL001",
+    "decision_date": "2024-07-15",
+    "decision_text": "Azure SQL over Cosmos DB for rules storage",
+    "rationale": "Credit policy rules are relational and structured. SQL provides ACID guarantees needed for policy enforcement. Cosmos DB overhead not justified.",
+    "risk": "Low",
+    "status": "Approved",
+    "made_by": "Alex Rivera"
+  },
+  {
+    "decision_id": "DEC003",
+    "solution_id": "SOL002",
+    "decision_date": "2024-05-20",
+    "decision_text": "Azure Entra External ID as CDR-compliant authorisation server",
+    "rationale": "Entra supports OIDC, FAPI 1.0 Advanced, PAR, DCR natively. Avoids build of custom auth server. Stays within M365 security perimeter.",
+    "risk": "Medium \u2014 FAPI configuration complexity",
+    "status": "Approved",
+    "made_by": "Jordan Patel"
+  },
+  {
+    "decision_id": "DEC004",
+    "solution_id": "SOL002",
+    "decision_date": "2024-05-20",
+    "decision_text": "Cosmos DB for consent store over SQL",
+    "rationale": "Consent arrangements have flexible schema and high read throughput requirements. Cosmos DB provides globally distributed, low-latency reads.",
+    "risk": "Low",
+    "status": "Approved",
+    "made_by": "Jordan Patel"
+  },
+  {
+    "decision_id": "DEC005",
+    "solution_id": "SOL003",
+    "decision_date": "2026-03-15",
+    "decision_text": "Dataverse as schema-first system of record replacing the legacy EA repository",
+    "rationale": "Dataverse is native to M365, has a relational model, native Power BI connector, and audit trail. Zero additional licensing. Legacy tool is SaaS with limited query capability.",
+    "risk": "Low \u2014 PoC required before full commitment",
+    "status": "Approved",
+    "made_by": "Sam Cowling"
+  },
+  {
+    "decision_id": "DEC006",
+    "solution_id": "SOL003",
+    "decision_date": "2026-03-15",
+    "decision_text": "Mermaid.js over Visio for diagram generation",
+    "rationale": "Mermaid markup is text-based and generatable by AI agents from schema fields. No file attachments, no diagram drift. Rendered natively in Power Pages and Confluence.",
+    "risk": "Low \u2014 diagrams are less rich than Visio but fit-for-purpose",
+    "status": "Approved",
+    "made_by": "Sam Cowling"
+  },
+  {
+    "decision_id": "DEC007",
+    "solution_id": "SOL005",
+    "decision_date": "2024-10-01",
+    "decision_text": "Snowflake on GCP over Azure Synapse",
+    "rationale": "Snowflake provides superior data sharing, cross-cloud querying, and separation of compute and storage. AA assessed three options \u2014 Snowflake scored highest on all guardrails.",
+    "risk": "Medium \u2014 GCP data residency requires CISO exception",
+    "status": "Approved",
+    "made_by": "Casey McQuaid"
+  },
+  {
+    "decision_id": "DEC008",
+    "solution_id": "SOL008",
+    "decision_date": "2026-01-15",
+    "decision_text": "Azure ML over third-party fraud ML platform",
+    "rationale": "Azure ML keeps data within the bank Azure tenancy. Avoids data egress to external ML vendor. Integrates natively with Azure Functions scoring pipeline.",
+    "risk": "High \u2014 model governance framework must be established before production",
+    "status": "Conditionally Approved",
+    "made_by": "Taylor Barker"
+  },
+  {
+    "decision_id": "DEC009",
+    "solution_id": "SOL010",
+    "decision_date": "2024-03-01",
+    "decision_text": "MuleSoft Anypoint for CRM integration layer",
+    "rationale": "Salesforce acquisition of MuleSoft provides native integration. Pre-built Temenos connector available.",
+    "risk": "High \u2014 MuleSoft not on approved components list. Under review for addition.",
+    "status": "Conditionally Approved",
+    "made_by": "Taylor Barker"
+  },
+  {
+    "decision_id": "DEC010",
+    "solution_id": "SOL006",
+    "decision_date": "2024-08-15",
+    "decision_text": "Single Entra External ID tenant for all brands (Coastal and Summit)",
+    "rationale": "Unified identity reduces operational overhead and enables cross-brand SSO. Brand separation maintained via custom domains and user flows.",
+    "risk": "Medium \u2014 brand isolation testing required before production",
+    "status": "Approved",
+    "made_by": "Taylor Barker"
+  }
+]

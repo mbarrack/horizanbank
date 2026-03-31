@@ -1,0 +1,92 @@
+[
+  {
+    "gov_id": "GOV001",
+    "solution_id": "SOL001",
+    "state": "Approved",
+    "submitted_date": "2024-08-07",
+    "approved_by": "Chris Chandran",
+    "approval_date": "2024-08-14",
+    "notes": "Approved with condition: Excel calculator decommission plan to be submitted within 60 days of go-live"
+  },
+  {
+    "gov_id": "GOV002",
+    "solution_id": "SOL002",
+    "state": "Approved",
+    "submitted_date": "2024-06-05",
+    "approved_by": "Chris Chandran",
+    "approval_date": "2024-06-12",
+    "notes": "Conditionally approved \u2014 CISO sign-off on FAPI implementation required before go-live"
+  },
+  {
+    "gov_id": "GOV003",
+    "solution_id": "SOL003",
+    "state": "Draft",
+    "submitted_date": "",
+    "approved_by": "",
+    "approval_date": "",
+    "notes": "PoC phase \u2014 target ADA submission April 2026"
+  },
+  {
+    "gov_id": "GOV004",
+    "solution_id": "SOL004",
+    "state": "Submitted",
+    "submitted_date": "2026-03-01",
+    "approved_by": "",
+    "approval_date": "",
+    "notes": "Pre-read distributed. ADA scheduled May 2026."
+  },
+  {
+    "gov_id": "GOV005",
+    "solution_id": "SOL005",
+    "state": "Approved",
+    "submitted_date": "2024-11-13",
+    "approved_by": "Chris Chandran",
+    "approval_date": "2024-11-20",
+    "notes": "GCP data residency exception approved \u2014 Snowflake AU region confirmed"
+  },
+  {
+    "gov_id": "GOV006",
+    "solution_id": "SOL006",
+    "state": "Approved",
+    "submitted_date": "2024-09-11",
+    "approved_by": "Chris Chandran",
+    "approval_date": "2024-09-18",
+    "notes": ""
+  },
+  {
+    "gov_id": "GOV007",
+    "solution_id": "SOL007",
+    "state": "Draft",
+    "submitted_date": "",
+    "approved_by": "",
+    "approval_date": "",
+    "notes": "TFDA in progress \u2014 AA required for NPP gateway vendor selection"
+  },
+  {
+    "gov_id": "GOV008",
+    "solution_id": "SOL008",
+    "state": "Conditionally Approved",
+    "submitted_date": "2026-02-12",
+    "approved_by": "Chris Chandran",
+    "approval_date": "2026-02-19",
+    "notes": "Conditionally approved pending: (1) AI guardrails assessment completion (2) Model explainability framework documented"
+  },
+  {
+    "gov_id": "GOV009",
+    "solution_id": "SOL010",
+    "state": "Approved",
+    "submitted_date": "2024-04-03",
+    "approved_by": "Chris Chandran",
+    "approval_date": "2024-04-10",
+    "notes": "MuleSoft under review \u2014 if not approved by Oct 2024 must revert to Azure APIM"
+  },
+  {
+    "gov_id": "GOV010",
+    "solution_id": "SOL012",
+    "state": "Approved",
+    "submitted_date": "2019-01-01",
+    "approved_by": "Previous CTO",
+    "approval_date": "2019-01-01",
+    "notes": "Standing approval \u2014 cloud migration assessment to be included in next review"
+  }
+]

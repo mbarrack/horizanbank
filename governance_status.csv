@@ -1,0 +1,11 @@
+gov_id,solution_id,state,submitted_date,approved_by,approval_date,notes
+GOV001,SOL001,Approved,2024-08-07,Chris Chandran,2024-08-14,Approved with condition: Excel calculator decommission plan to be submitted within 60 days of go-live
+GOV002,SOL002,Approved,2024-06-05,Chris Chandran,2024-06-12,Conditionally approved — CISO sign-off on FAPI implementation required before go-live
+GOV003,SOL003,Draft,,,,PoC phase — target ADA submission April 2026
+GOV004,SOL004,Submitted,2026-03-01,,,Pre-read distributed. ADA scheduled May 2026.
+GOV005,SOL005,Approved,2024-11-13,Chris Chandran,2024-11-20,GCP data residency exception approved — Snowflake AU region confirmed
+GOV006,SOL006,Approved,2024-09-11,Chris Chandran,2024-09-18,
+GOV007,SOL007,Draft,,,,TFDA in progress — AA required for NPP gateway vendor selection
+GOV008,SOL008,Conditionally Approved,2026-02-12,Chris Chandran,2026-02-19,Conditionally approved pending: (1) AI guardrails assessment completion (2) Model explainability framework documented
+GOV009,SOL010,Approved,2024-04-03,Chris Chandran,2024-04-10,MuleSoft under review — if not approved by Oct 2024 must revert to Azure APIM
+GOV010,SOL012,Approved,2019-01-01,Previous CTO,2019-01-01,Standing approval — cloud migration assessment to be included in next review

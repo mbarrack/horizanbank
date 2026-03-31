@@ -1,0 +1,67 @@
+[
+  {
+    "tsa_id": "TSA001",
+    "capability_id": "CAP001",
+    "domain": "Lending",
+    "current_pattern": "Fragmented: multiple point solutions per brand, Excel-based tools, limited API integration",
+    "target_pattern": "Unified Azure-native lending platform: single serviceability engine, shared origination API, Pega workflow across both brands, broker-facing portal as first-class channel",
+    "target_principles": "API-first; Azure-native; Approved components only; Single source of truth per data domain",
+    "approved_by": "Chris Chandran",
+    "approval_date": "2025-03-01",
+    "target_date": "2027-06-30",
+    "status": "In Progress",
+    "rationale": "Fragmented lending estate increases credit policy risk and broker experience friction. Unified platform reduces maintenance overhead and enables consistent policy enforcement."
+  },
+  {
+    "tsa_id": "TSA002",
+    "capability_id": "CAP011",
+    "domain": "Data and Analytics",
+    "current_pattern": "Multiple on-premises data warehouses by brand. Limited cross-brand analytics. No ML capability in production.",
+    "target_pattern": "Snowflake Enterprise Data Hub as single analytical layer. Azure Data Factory for ingestion. Power BI as enterprise reporting standard. ML workbench for predictive models.",
+    "target_principles": "Cloud-native; Domain-oriented data ownership; AI-ready data foundations",
+    "approved_by": "Chris Chandran",
+    "approval_date": "2025-11-20",
+    "target_date": "2027-06-30",
+    "status": "In Progress",
+    "rationale": "Fragmented data estate limits analytics maturity and AI/ML adoption. Unified data hub enables cross-brand insights, regulatory reporting, and ML model development."
+  },
+  {
+    "tsa_id": "TSA003",
+    "capability_id": "CAP013",
+    "domain": "Customer Management",
+    "current_pattern": "Oracle Siebel CRM (Coastal brand) plus fragmented Summit CRM tooling. No unified customer view. Limited marketing automation.",
+    "target_pattern": "Salesforce CRM as single customer record across both brands. Service Cloud for contact centre. Marketing Cloud for campaigns. MuleSoft integration to core banking.",
+    "target_principles": "SaaS-first; Single customer view; API-first integration",
+    "approved_by": "Chris Chandran",
+    "approval_date": "2024-04-10",
+    "target_date": "2026-06-30",
+    "status": "In Progress",
+    "rationale": "Siebel is end-of-life and inhibits customer experience investment. Salesforce provides modern CRM capability with AI features and native integration."
+  },
+  {
+    "tsa_id": "TSA004",
+    "capability_id": "CAP014",
+    "domain": "Risk and Compliance",
+    "current_pattern": "Rule-based fraud detection. Manual AML monitoring. Compliance coverage tracked in spreadsheets.",
+    "target_pattern": "Azure ML-based fraud detection. Automated AML with graph analytics. Compliance programme tracked in real-time via Architecture as Data platform.",
+    "target_principles": "AI-augmented; Real-time monitoring; Regulatory-by-design",
+    "approved_by": "Chris Chandran",
+    "approval_date": "2026-02-19",
+    "target_date": "2027-12-31",
+    "status": "Draft",
+    "rationale": "Rule-based risk systems are falling behind sophisticated fraud patterns. Compliance monitoring requires continuous oversight that manual processes cannot sustain."
+  },
+  {
+    "tsa_id": "TSA005",
+    "capability_id": "CAP008",
+    "domain": "Digital",
+    "current_pattern": "Separate brand digital channels with independent tech stacks. No shared component library. Broker portal built on Siebel.",
+    "target_pattern": "Shared Azure-native digital platform. Micro-frontend architecture with shared design system. Unified identity via Entra External ID. Modern broker portal as independent Azure SPA.",
+    "target_principles": "API-first; Azure-native; Shared components; Design system",
+    "approved_by": "Chris Chandran",
+    "approval_date": "2025-09-01",
+    "target_date": "2028-06-30",
+    "status": "In Progress",
+    "rationale": "Fragmented digital channels increase cost, slow feature delivery, and create inconsistent customer experiences across Coastal and Summit brands."
+  }
+]

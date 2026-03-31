@@ -1,0 +1,15 @@
+capability_id,parent_capability_id,capability_name,capability_description,business_owner,capability_level,current_maturity,target_maturity,investment_priority,target_maturity_date,orbus_id
+CAP001,,Lending,End-to-end lending from origination to servicing,Head of Lending,L1,3,4,Invest,2026-12-31,ORB-CAP-001
+CAP002,CAP001,Loan Origination,"Assessment, decisioning and approval of new loan applications",Head of Lending,L2,3,4,Invest,2026-06-30,ORB-CAP-002
+CAP003,CAP001,Loan Servicing,Ongoing management of active loan accounts,Head of Lending,L2,3,3,Maintain,,ORB-CAP-003
+CAP004,CAP001,Serviceability Assessment,Calculation of borrower capacity to service a loan,Head of Credit,L2,2,4,Invest,2025-12-31,ORB-CAP-004
+CAP005,,Core Banking,"Foundational banking ledger, accounts and payments",Head of Platforms,L1,3,3,Maintain,,ORB-CAP-005
+CAP006,CAP005,Account Management,"Creation, maintenance and closure of customer accounts",Head of Platforms,L2,4,4,Maintain,,ORB-CAP-006
+CAP007,CAP005,Payments Processing,"NPP, BPAY, direct entry and international payments",Head of Platforms,L2,3,4,Invest,2026-12-31,ORB-CAP-007
+CAP008,,Digital,"Customer-facing digital channels — web, mobile, broker portal",Head of Digital,L1,3,5,Invest,2027-06-30,ORB-CAP-008
+CAP009,CAP008,Online Banking,Internet banking for retail and business customers,Head of Digital,L2,3,4,Invest,2026-06-30,ORB-CAP-009
+CAP010,CAP008,Broker Portal,Third-party broker submission and tracking platform,Head of Lending,L2,2,4,Invest,2026-12-31,ORB-CAP-010
+CAP011,,Data and Analytics,"Enterprise data platform, reporting, and AI/ML capabilities",Head of Data,L1,2,4,Invest,2027-06-30,ORB-CAP-011
+CAP012,CAP011,Open Banking,CDR data sharing with accredited data recipients,Head of Data,L2,2,3,Invest,2026-06-30,ORB-CAP-012
+CAP013,,Customer Management,"CRM, identity, and customer lifecycle management",Head of Customer,L1,3,4,Invest,2026-12-31,ORB-CAP-013
+CAP014,,Risk and Compliance,"Regulatory compliance, fraud detection, AML",Chief Risk Officer,L1,3,4,Invest,2026-12-31,ORB-CAP-014

@@ -1,0 +1,21 @@
+comp_id,name,category,vendor,license_cost_pa,deployments_count,status,eol_date
+AC001,Azure API Management,Integration,Microsoft,48000,12,Approved,
+AC002,Azure Functions,Compute,Microsoft,0,28,Approved,
+AC003,Azure SQL Database,Data,Microsoft,36000,19,Approved,
+AC004,Azure Cosmos DB,Data,Microsoft,24000,7,Approved,
+AC005,Azure Front Door,Networking,Microsoft,18000,4,Approved,
+AC006,Azure Key Vault,Security,Microsoft,0,31,Approved,
+AC007,Azure Entra External ID,Identity,Microsoft,12000,6,Approved,
+AC008,Azure Service Bus,Messaging,Microsoft,8400,14,Approved,
+AC009,Salesforce CRM,CRM,Salesforce,180000,1,Approved,
+AC010,Atlassian Confluence,Collaboration,Atlassian,24000,1,Approved,
+AC011,Temenos Transact,Core Banking,Temenos,420000,2,Approved,
+AC012,Pega Platform,BPM,Pega,210000,3,Approved,
+AC013,MuleSoft Anypoint,Integration,Salesforce,156000,1,Under Review,
+AC014,Snowflake,Data Warehouse,Snowflake,96000,2,Approved,
+AC015,Power BI Premium,Analytics,Microsoft,60000,1,Approved,
+AC016,Oracle Siebel CRM,CRM,Oracle,240000,1,Retire,2025-12-31
+AC017,IBM DataPower Gateway,Integration,IBM,84000,1,Retire,2026-06-30
+AC018,Azure Monitor,Observability,Microsoft,0,22,Approved,
+AC019,Azure DevOps,DevOps,Microsoft,0,18,Approved,
+AC020,Copilot Studio,AI,Microsoft,30000,2,Approved,

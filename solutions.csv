@@ -1,0 +1,179 @@
+solution_id,title,business_context,status,risk_level,owner_id,document_type,delivery_pathway,tshirt_size,it_environment_impact,aa_required,hlso_required,cra_required,jira_link,ada_meeting_date,scope_inclusions,scope_exclusions,scope_backlog,patterns_applied,mermaid_component,mermaid_sequence,orbus_id,servicenow_id,data_residency,last_reviewed,go_live_date,retirement_date,target_disposition,target_disposition_rationale,target_date,transition_state,predecessor_solution_id,successor_solution_id,consolidates_into_id,snapshot_date
+SOL001,Horizon Serviceability Engine,Centralised Azure-based serviceability calculation engine replacing fragmented Excel and online banking calculators. Provides consistent credit policy enforcement across all Horizon Bank brands and broker channels.,Approved,High,Alex Rivera,HLSO,Delivery Hub,L,High,False,True,True,https://horizonbank.atlassian.net/browse/LDH-4421,2024-08-14,Centralised rules engine; Admin UI; Broker-facing calculator UI; Online banking integration; API publication,Legacy BSC decommission (separate project); Mobile app integration (Phase 2),Save/retrieve broker calculations; Credit policy simulation tool,API-first; Azure-native; Event-driven,"graph LR
+  Broker[Broker Portal] --> AFD[Azure Front Door]
+  POL[Online Banking] --> AFD
+  AFD --> APIM[Azure APIM]
+  APIM --> SVC[Serviceability Engine\nAzure Functions]
+  SVC --> DB[(Azure SQL\nRules Engine)]
+  SVC --> KV[Key Vault]
+  AdminUI[Admin UI] --> APIM
+  APIM --> MON[Azure Monitor]","sequenceDiagram
+  autonumber
+  Broker->>AFD: Submit serviceability request
+  AFD->>APIM: Forward (WAF validated)
+  APIM->>SVC: Invoke calculation API
+  SVC->>DB: Fetch current credit policy rules
+  DB-->>SVC: Policy rules returned
+  SVC->>SVC: Execute serviceability calculation
+  SVC-->>APIM: Return calculation result
+  APIM-->>Broker: JSON response with servicing capacity",ORB-APP-1147,SN-2024-08847,Australia East (Azure),2025-01-15,2025-03-31,,Retain,Strategic platform — continues to evolve with credit policy changes,,Target Reached,SOL014,,,2026-03-01
+SOL002,Horizon Open Banking CDR Platform,Consumer Data Right (CDR) data holder capability enabling accredited third parties to access Horizon Bank customer banking data via BIZA-registered APIs. Required for ACCC CDR compliance.,Approved,High,Jordan Patel,HLSO,Strategic Project,XL,High,False,True,True,https://horizonbank.atlassian.net/browse/CDR-1001,2024-06-12,BIZA CDR Register integration; Azure Entra CDR auth server; APIM CDR API gateway; Consent management; CDS Banking APIs v1.31,Energy sector CDR; Business banking CDR (Phase 2),Bulk data sharing; Action initiation,FAPI 1.0 Advanced; API-first; Azure-native,"graph LR
+  Consumer --> DR[Accredited DR App]
+  DR --> BIZA[BIZA CDR Register]
+  DR --> AFD[Azure Front Door]
+  AFD --> APIM[Azure APIM]
+  APIM --> Entra[Entra External ID\nCDR Auth Server]
+  APIM --> CDR[CDR API Functions]
+  CDR --> SQL[(Azure SQL\nCDR Cache)]
+  CDR --> Cosmos[(Cosmos DB\nConsent Store)]
+  CDR --> Core[Core Banking]","sequenceDiagram
+  autonumber
+  DR->>BIZA: Validate accreditation (SSA)
+  DR->>AFD: PAR + consent request (MTLS)
+  AFD->>APIM: Route request
+  APIM->>Entra: OIDC auth flow
+  Entra->>Consumer: Redirect to bank login
+  Consumer->>Entra: Authenticate and grant consent
+  Entra-->>DR: Issue access token
+  DR->>APIM: CDR API call (Bearer token)
+  APIM->>CDR: Invoke CDR handler
+  CDR->>Core: Fetch customer data
+  CDR-->>DR: Return CDR response",ORB-APP-1203,SN-2024-06123,Australia East (Azure),2025-02-10,2025-06-30,,Retain,Regulatory obligation — CDR compliance non-negotiable,,Transitioning,,,,2026-03-01
+SOL003,Architecture as Data — Intelligence Platform,Replaces legacy EA repository as the enterprise architecture system of record. Architecture knowledge captured as structured schema. AI agents handle intake and generation. Live estate intelligence for CTO and board.,Draft,Medium,Sam Cowling,HLSO,BAU,M,Medium,False,True,False,https://horizonbank.atlassian.net/browse/EA-0001,2026-04-30,Dataverse schema; Copilot Studio intake agent; Generation agent; Power Automate flows; Confluence publish; Mermaid diagram generation; Power BI estate dashboard,Legacy EA tool decommission (follows PoC validation); Visio licence retirement,Lifecycle agent; Insights agent; Ingestion agent,Schema-first; Agentic AI; M365-native,"graph LR
+  Arch[Architect] --> Teams[Microsoft Teams]
+  Teams --> Intake[Intake Agent\nCopilot Studio]
+  Intake --> DV[(Dataverse\nSolution Record)]
+  DV --> PA[Power Automate]
+  PA --> Gen[Generation Agent]
+  Gen --> DV
+  PA --> Conf[Confluence Page]
+  PA --> PBI[Power BI Dashboard]","sequenceDiagram
+  autonumber
+  Architect->>Intake Agent: Initiates intake in Teams
+  Intake Agent->>Architect: Structured interview questions
+  Architect->>Intake Agent: Provides answers
+  Intake Agent->>Dataverse: Write solution_record
+  Dataverse->>Power Automate: Trigger on intake_complete
+  Power Automate->>Generation Agent: Request HLSO draft
+  Generation Agent->>Dataverse: Write draft and Mermaid markup
+  Power Automate->>Confluence: Publish HLSO page
+  Architect->>Confluence: Review and refine draft",,,Australia East (Azure / M365),2026-03-15,,,Retain,Strategic EA intelligence platform,2026-12-31,Current,SOL013,,,2026-03-01
+SOL004,Broker Portal — New Experience,"Modern Azure-hosted broker portal replacing the legacy Siebel-based broker interface. Provides loan submission, tracking, and serviceability access for accredited brokers across both Horizon Bank brands.",Submitted,High,Blake Nguyen,HLSO,Delivery Hub,XL,High,False,True,True,https://horizonbank.atlassian.net/browse/LDH-5102,2026-05-14,Broker authentication; Loan submission; Application tracking; Serviceability calculator integration; Document upload,Accreditation management; Commission payments,Broker performance dashboards; Two-way messaging,API-first; Azure-native; React SPA,"graph LR
+  Broker --> AFD[Azure Front Door]
+  AFD --> APIM[Azure APIM]
+  APIM --> Auth[Entra External ID]
+  APIM --> LOS[Loan Origination Service]
+  APIM --> SVC[Serviceability Engine\nSOL001]
+  LOS --> Pega[Pega Platform]
+  LOS --> SQL[(Azure SQL)]","sequenceDiagram
+  autonumber
+  Broker->>AFD: Login request
+  AFD->>Entra: OIDC authentication
+  Entra-->>Broker: Access token
+  Broker->>APIM: Submit loan application
+  APIM->>LOS: Create application
+  LOS->>Pega: Initiate workflow
+  Pega-->>LOS: Application reference
+  LOS-->>Broker: Submission confirmed",ORB-APP-0892,,Australia East (Azure),2026-03-01,,,Retain,Strategic broker channel investment,2027-06-30,Current,SOL015,,,2026-03-01
+SOL005,Enterprise Data Hub,"Centralised Snowflake-based data platform replacing fragmented on-premises data warehouses. Enables AI/ML workloads, regulatory reporting, and cross-brand analytics for Horizon Bank.",Approved,High,Casey McQuaid,HLSO,Strategic Project,XL,High,True,True,True,https://horizonbank.atlassian.net/browse/DATA-0301,2024-11-20,Snowflake cloud DW; Azure Data Factory ingestion; Power BI reporting layer; Data governance catalogue,Real-time streaming (Phase 2); ML model serving,Data mesh domain ownership; Feature store for ML,Data lakehouse; Cloud-native; Domain-oriented,"graph LR
+  Core[Core Banking\nTemenos] --> ADF[Azure Data Factory]
+  CRM[Salesforce CRM] --> ADF
+  Lending[Pega Lending] --> ADF
+  ADF --> Snow[(Snowflake\nEnterprise DH)]
+  Snow --> PBI[Power BI]
+  Snow --> ML[ML Workbench]
+  Snow --> Reg[Regulatory Reporting]","sequenceDiagram
+  autonumber
+  Core Banking->>ADF: Nightly extract (CDC)
+  Salesforce->>ADF: Daily sync
+  ADF->>Snowflake: Load and transform
+  Snowflake->>Power BI: Refresh datasets
+  Analyst->>Power BI: Query dashboards
+  Power BI-->>Analyst: Return results",ORB-APP-1089,SN-2024-11456,Australia East (GCP/Snowflake) — data residency exception approved,2025-11-01,2025-06-30,,Retain,Central intelligence platform for the enterprise,,Target Reached,SOL016,,,2026-03-01
+SOL006,Customer Identity Platform,Unified customer identity and access management across all Horizon Bank digital channels using Azure Entra External ID. Replaces fragmented brand-specific identity stores across Coastal and Summit brands.,Approved,High,Taylor Barker,HLSO,Strategic Project,L,High,False,True,True,https://horizonbank.atlassian.net/browse/CIAM-0201,2024-09-18,Azure Entra External ID; MFA; OIDC/OAuth2; Cross-brand SSO; Migration of Coastal and Summit identities,Staff identity (separate Entra ID tenant); Wholesale banking,Passkey support; Biometric login,Zero-trust; Azure-native; OIDC FAPI,"graph LR
+  Coastal[Coastal Online Banking] --> Entra[Azure Entra\nExternal ID]
+  Summit[Summit Digital] --> Entra
+  Broker[Broker Portal] --> Entra
+  CDR[CDR Auth Server] --> Entra
+  Entra --> IdStore[(Identity Store)]
+  Entra --> MFA[MFA Provider]
+  Entra --> KV[Key Vault]","sequenceDiagram
+  autonumber
+  Customer->>Coastal Portal: Login request
+  Coastal Portal->>Entra: OIDC authorize
+  Entra->>Customer: MFA challenge
+  Customer->>Entra: MFA verified
+  Entra-->>Coastal Portal: ID token and access token
+  Coastal Portal->>API: Authenticated request
+  API-->>Customer: Personalised content",ORB-APP-1156,SN-2024-09214,Australia East (Azure),2025-09-01,2025-03-31,,Retain,Foundation identity platform — all channels depend on it,,Target Reached,,,,2026-03-01
+SOL007,Payments Modernisation — Real-Time NPP,New Payments Platform (NPP) infrastructure uplift to support PayTo and Osko for retail and business customers across both Horizon Bank brands. Required for RBA NPP mandate compliance.,Draft,High,Drew Hartley,TFDA,Strategic Project,XL,High,True,True,True,https://horizonbank.atlassian.net/browse/PAY-0801,,PayTo mandate initiation; Osko overlay; NPP gateway integration; Core banking adapter,International payments; Batch direct entry replacement,Dynamic QR payments; Crypto settlement,Event-driven; API-first; Real-time processing,"graph LR
+  Customer --> OB[Online Banking]
+  OB --> APIM[Azure APIM]
+  APIM --> PaySvc[Payments Service\nAzure Functions]
+  PaySvc --> Core[Temenos Transact]
+  PaySvc --> NPP[NPP Gateway]
+  NPP --> RBA[RBA Fast Settlement]
+  PaySvc --> SB[Azure Service Bus]
+  SB --> Notif[Notification Service]","sequenceDiagram
+  autonumber
+  Customer->>Online Banking: Initiate PayTo payment
+  Online Banking->>APIM: Payment request
+  APIM->>PaySvc: Process payment
+  PaySvc->>Core: Debit source account
+  PaySvc->>NPP: Submit to NPP gateway
+  NPP->>RBA: Fast settle
+  RBA-->>NPP: Settlement confirmation
+  NPP-->>PaySvc: Payment confirmed
+  PaySvc->>SB: Publish payment event
+  SB->>Notif: Trigger customer notification",,,Australia East (Azure) plus RBA co-location,2026-03-15,,,Retain,Regulatory mandate — NPP compliance non-negotiable,2027-03-31,Current,,,,2026-03-01
+SOL008,Fraud Detection AI Engine,Real-time ML-based transaction fraud detection replacing the legacy rule-based system. Reduces false positives by 40% while improving fraud catch rate using Azure ML and streaming analytics.,Conditionally Approved,High,Taylor Barker,AA,Strategic Project,L,High,True,True,True,https://horizonbank.atlassian.net/browse/RISK-1104,2026-02-19,Azure ML model training pipeline; Real-time scoring via Azure Functions; Case management integration; Model monitoring dashboard,AML (separate programme); Identity fraud,Behavioural biometrics; Network graph analysis,ML-ops; Event-driven; Azure-native,"graph LR
+  TxnStream[Transaction Stream] --> EG[Azure Event Grid]
+  EG --> Score[Scoring Function\nAzure Functions]
+  Score --> Model[Azure ML\nFraud Model]
+  Score --> Rules[Rules Engine]
+  Score --> Case[Case Management]
+  Model --> Monitor[Model Monitor\nAzure Monitor]
+  Case --> Analyst[Fraud Analyst]","sequenceDiagram
+  autonumber
+  Core Banking->>Event Grid: Transaction event
+  Event Grid->>Scoring Function: Invoke scorer
+  Scoring Function->>Azure ML: Score transaction
+  Azure ML-->>Scoring Function: Fraud probability
+  Scoring Function->>Rules Engine: Apply business rules
+  Rules Engine-->>Scoring Function: Decision
+  Scoring Function->>Case Mgmt: Create case if fraud
+  Case Mgmt->>Analyst: Alert notification",ORB-APP-1178,,Australia East (Azure),2026-02-19,,,Retain,Strategic fraud capability — investment priority,2026-12-31,Current,SOL017,,,2026-03-01
+SOL009,Oracle Siebel CRM (Legacy),Legacy CRM platform managing customer relationships for the Coastal brand. Being retired following Salesforce CRM implementation. Currently in phase-out with data migration underway.,Approved,Medium,Taylor Barker,HLSO,BAU,S,Medium,False,False,False,https://horizonbank.atlassian.net/browse/CRM-0112,,Data migration to Salesforce; Decommission planning,,,Legacy,"graph LR
+  Staff --> Siebel[Oracle Siebel CRM]
+  Siebel --> Mainframe[(Legacy Mainframe)]
+  Siebel --> SQL[(On-prem SQL Server)]",,ORB-APP-0234,SN-2019-03421,On-premises — Horizon Bank Data Centre,2025-06-01,2010-01-01,2026-06-30,Retire,Replaced by Salesforce CRM (SOL010). Full data migration in progress.,2026-06-30,Transitioning,,SOL010,,2026-03-01
+SOL010,Salesforce CRM,"Enterprise CRM replacing Oracle Siebel across both Coastal and Summit brands. Provides a single view of customer, case management, marketing automation, and complaints handling.",Approved,High,Taylor Barker,HLSO,Strategic Project,XL,High,False,True,True,https://horizonbank.atlassian.net/browse/CRM-0201,2024-04-10,Sales Cloud; Service Cloud; Marketing Cloud; MuleSoft integration; Migration from Siebel,Financial Services Cloud (Phase 2),AI-powered case routing; Propensity modelling,SaaS-first; API-first; Event-driven,"graph LR
+  Staff --> SFDC[Salesforce CRM]
+  Customer --> SFDC
+  SFDC --> Mule[MuleSoft Anypoint]
+  Mule --> Core[Temenos Transact]
+  Mule --> EDH[Enterprise Data Hub]
+  SFDC --> Marketing[Marketing Cloud]
+  SFDC --> Einstein[Einstein AI]","sequenceDiagram
+  autonumber
+  Customer->>Contact Centre: Support call
+  Staff->>Salesforce: Create case
+  Salesforce->>MuleSoft: Fetch account data
+  MuleSoft->>Core Banking: Query balance and transactions
+  Core Banking-->>MuleSoft: Account data
+  MuleSoft-->>Salesforce: Return customer data
+  Salesforce-->>Staff: 360 customer view",ORB-APP-1201,SN-2024-04892,Salesforce AU region — AP2,2025-10-01,2025-07-01,,Retain,Strategic CRM platform replacing Siebel,,Transitioning,SOL009,,,2026-03-01
+SOL011,IBM DataPower API Gateway (Legacy),Legacy on-premises API gateway managing integration between core banking and surrounding systems. Being replaced by Azure APIM as part of the cloud migration programme. Vendor support ends June 2026.,Approved,High,Drew Hartley,HLSO,BAU,M,High,False,False,False,https://horizonbank.atlassian.net/browse/INT-0441,,Migration of integrations to Azure APIM; Gateway decommission,,,Legacy,"graph LR
+  Apps --> DataPower[IBM DataPower Gateway]
+  DataPower --> Core[Temenos Transact]
+  DataPower --> Siebel[Oracle Siebel]
+  DataPower --> Legacy[(Legacy Systems)]",,ORB-APP-0189,SN-2018-07123,On-premises — Horizon Bank Data Centre,2025-03-01,2014-01-01,2026-09-30,Retire,Vendor support ends June 2026. All integrations migrating to Azure APIM.,2026-09-30,Transitioning,,,,2026-03-01
+SOL012,Core Banking — Temenos Transact,"Core banking system of record for all deposit, loan, and transaction accounts across Coastal and Summit brands. Mission-critical operational system supporting all Horizon Bank products.",Approved,High,Drew Hartley,HLSO,BAU,XL,High,False,False,False,,,Ongoing BAU; Regulatory upgrades; Product configuration,Full replacement — not in current roadmap,Cloud migration assessment,SoR; Batch plus real-time hybrid,"graph LR
+  APIM[Azure APIM] --> Temenos[Temenos Transact]
+  DataPower[IBM DataPower] --> Temenos
+  ADF[Azure Data Factory] --> Temenos
+  Temenos --> Mainframe[(Legacy Mainframe\nBatch)]
+  Temenos --> Reporting[Regulatory Reporting]",,ORB-APP-0001,SN-2012-00001,On-premises — Horizon Bank Data Centre,2025-12-01,2012-01-01,,Retain,Core SoR — no replacement planned in current 3-year horizon,,Current,,,,2026-03-01
+SOL013,Legacy EA Repository Tool,Previous enterprise architecture repository tool being replaced by the Architecture as Data platform.,Approved,Low,Sam Cowling,HLSO,BAU,XS,Low,False,False,False,,,Data export for migration,,,Legacy SaaS,,,ORB-APP-0002,,UK (vendor cloud),2025-01-01,2018-01-01,2026-12-31,Retire,Replaced by Architecture as Data (SOL003),2026-12-31,Transitioning,,SOL003,,2026-03-01
+SOL014,Broker Serviceability Calculator (Excel),Legacy Excel-based serviceability tool for brokers. Replaced by the Horizon Serviceability Engine.,Approved,Medium,Alex Rivera,HLSO,BAU,XXXS,Low,False,False,False,,,,,,Legacy,,,ORB-APP-0744,,End-user device,2024-03-01,2015-01-01,2025-06-30,Retire,Replaced by SOL001 — Horizon Serviceability Engine,2025-06-30,Decommissioned,,SOL001,,2026-03-01
+SOL015,Legacy Broker Portal (Siebel-based),Legacy broker submission portal built on Siebel. Being retired as part of the Broker Portal New Experience project.,Approved,Medium,Blake Nguyen,HLSO,BAU,XS,Medium,False,False,False,,,,,,Legacy,,,ORB-APP-0445,,On-premises,2025-06-01,2016-01-01,2027-06-30,Retire,Replaced by SOL004 — Broker Portal New Experience,2027-06-30,Transitioning,,SOL004,,2026-03-01
